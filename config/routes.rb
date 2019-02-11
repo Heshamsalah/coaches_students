@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :students
 
   resources :coaches
+
+  post '/problem_one', to: 'distributions#problem_one', as: 'problem_one'
+  post '/problem_two', to: 'distributions#problem_two', as: 'problem_two'
+  post '/problem_three', to: 'distributions#problem_three', as: 'problem_three'
 end
