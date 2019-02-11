@@ -28,6 +28,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# paginator for modern web app frameworks and ORMs
+gem 'kaminari'
+
 group :development, :test do
   # A fixtures replacement with a more straightforward syntax.
   gem 'factory_bot_rails', '~> 4.0'
