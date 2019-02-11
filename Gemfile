@@ -28,8 +28,15 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Support graphql apis
+gem 'graphql'
 # paginator for modern web app frameworks and ORMs
 gem 'kaminari'
+# Allow developers to test graphql endpoints and view documentation
+# via /graphiql
+gem 'graphiql-rails'
+# Ruby library that pretty prints Ruby objects in full color
+gem 'awesome_print'
 
 group :development, :test do
   # A fixtures replacement with a more straightforward syntax.
