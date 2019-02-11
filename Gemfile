@@ -29,8 +29,21 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 group :development, :test do
+  # A fixtures replacement with a more straightforward syntax.
+  gem 'factory_bot_rails', '~> 4.0'
+  # A library for generating fake data.
+  gem 'faker'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Using RSpec for testing.
+  gem 'rspec-rails', '~> 3.8'
+end
+
+group :test do
+  # Provides RSpec with additional matchers.
+  gem 'shoulda-matchers', '~> 3.1'
+  # Cleans test database to ensure a clean state in each test suite.
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -38,6 +51,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Code style and convention gaurdian
+  gem 'rubocop', '~> 0.64.0', require: false
 end
 
 
