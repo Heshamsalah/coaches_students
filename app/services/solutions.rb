@@ -14,19 +14,23 @@ class Solutions
     end
 
     def solution_two(coaches, students)
-      max = coaches.max
-      no_of_coaches = coaches.size
-
-      coaches.map! do |s|
-        needed = max - s
-        to_add = [needed, students].min
-        students -= to_add
-        s + to_add
+      students_per_coach_list = coaches.map do |coach|
+        coach.students.count
       end
 
-      result = solution_one(no_of_coaches, students)
+      max_students_per_coach = students_per_coach_list.max
+      coaches_count = students_per_coach_list.size
 
-      coaches.zip(result).map(&:sum)
+      students_per_coach_list.map! do |students_per_current_coach|
+        students_needed = max_students_per_coach - students_per_current_coach
+        students_diff = [students_needed, students].min
+        students -= students_diff
+        students_per_current_coach + students_diff
+      end
+
+      students_per_coach_list.zip(
+        solution_one(coaches_count, students),
+      ).map(&:sum)
     end
 
     def solution_three(coaches, students)
@@ -44,7 +48,8 @@ class Solutions
 
     def assign_students_to_coaches(students, coaches, students_per_coach)
       coaches.each_with_index do |coach, i|
-        coach.students << students.pop(students_per_coach[i])
+        count = (coach.students.count - students_per_coach[i]).abs
+        coach.students << students.pop(count)
       end
 
       coaches.map do |coach|
