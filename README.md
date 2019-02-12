@@ -13,3 +13,12 @@ This is an API only app, but you can find the front end app in **[here](https://
 - run `rails db:create; rails db:migrate; rails db:seed`
 - run `rails s` -- you might need to spicify a port if you are going to run it along side the react app
 - use this cmd to run it with the default configs for the front end app `rails s -p 5000`
+
+
+## Tests
+- Tests are written useing `RSpec`
+- run `rspec` to run all tests. *graphql tests are not added yet*
+
+
+## Styling 
+- This repo uses `rubocop` to run code style checks
