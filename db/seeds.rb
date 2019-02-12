@@ -6,16 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-coaches = []
+puts "======================================================="
+puts "======================================================="
 
-(1..10).each do |i|
-  coaches << Coach.create(name: "Coach#{i}")
-  puts "Created Coach 'Coach#{i}'"
-end
+puts "Seeding data into the database ..... "
 
-coaches.each do |coach|
-  (1..rand(2...10)).each do |i|
-    coach.students.create(name: "Student#{i}")
-    puts "Created Student 'Student#{i}', for Coach #{coach.name}"
-  end
-end
+coaches = FactoryBot.create_list(:coach_with_students, 20, students_count: 10, capacity: 50)
+
+FactoryBot.create_list(:student, 100)
+
+puts "You have #{Coach.count} Coaches and #{Student.count} Students."
+
+puts "Finshed Seeding data successfully!"
+puts "======================================================="
+puts "======================================================="
+

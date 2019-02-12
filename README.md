@@ -1,24 +1,15 @@
-# README
+# Coaches And Students App  -- API Only APP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* rails version: **Rails 5.2.2**
+* ruby version: **ruby 2.5.1p57**
 
-Things you may want to cover:
+The App provides both RESTful API and GraphQL. 
+This is an API only app, but you can find the front end app in **[here](https://github.com/Heshamsalah/coaches_and_students_web_app)** (*still under construction*).
 
-* Ruby version
+## Instructions
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- clone the repo `https://github.com/Heshamsalah/coaches_students.git`
+- run `bundle install`
+- run `rails db:create; rails db:migrate; rails db:seed`
+- run `rails s` -- you might need to spicify a port if you are going to run it along side the react app
+- use this cmd to run it with the default configs for the front end app `rails s -p 5000`
