@@ -1,32 +1,31 @@
 class CoachesController < ApplicationController
-  before_action :set_coach, only: %i(show update destroy)
-
   def index
-    result = Coach.page(permitted_params[:page].to_i).
-             per(permitted_params[:per_page].to_i)
+    result = CoachService::Serve.run(permitted_params, :index)
     handle_response(result, :ok)
   end
 
   def show
-    handle_response(@coach, :ok)
+    result = CoachService::Serve.run(permitted_params, :show)
+    handle_response(result, :ok)
   end
 
   def create
-    @coach = Coach.create!(name: permitted_params[:name])
-    handle_response(@coach, :created)
+    result = CoachService::Serve.run(permitted_params, :create)
+    handle_response(result, :created)
   rescue StandardError => e
     handle_response({ msg: e.message }, 500)
   end
 
   def update
-    @coach.update!(update_params)
-    handle_response(@coach, :ok)
+    modified_params = permitted_params.merge(update_params: update_params)
+    result = CoachService::Serve.run(modified_params, :update)
+    handle_response(result, :ok)
   rescue StandardError => e
     handle_response({ msg: e.message }, 500)
   end
 
   def destroy
-    @coach.destroy
+    CoachService::Serve.run(permitted_params, :delete)
     handle_response({ msg: 'Deleted Successfully' }, :ok)
   rescue StandardError => e
     handle_response({ msg: e.message }, 500)
@@ -44,12 +43,6 @@ class CoachesController < ApplicationController
   end
 
   def update_params
-    params.permit(:name)
-  end
-
-  def set_coach
-    @coach = Coach.find(permitted_params[:id])
-  rescue ActiveRecord::RecordNotFound => e
-    handle_response({ msg: e.message }, 500)
+    params.permit(:name, :capacity)
   end
 end

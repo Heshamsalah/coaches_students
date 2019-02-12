@@ -1,32 +1,31 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i(show update destroy)
-
   def index
-    result = Student.page(permitted_params[:page].to_i).
-             per(permitted_params[:per_page].to_i)
+    result = StudentService::Serve.run(permitted_params, :index)
     handle_response(result, :ok)
   end
 
   def show
-    handle_response(@student, :ok)
+    result = StudentService::Serve.run(permitted_params, :show)
+    handle_response(result, :ok)
   end
 
   def create
-    @student = Student.create!(name: permitted_params[:name])
-    handle_response(@student, :created)
+    result = StudentService::Serve.run(permitted_params, :create)
+    handle_response(result, :created)
   rescue StandardError => e
     handle_response({ msg: e.message }, 500)
   end
 
   def update
-    @student.update!(update_params)
-    handle_response(@student, :ok)
+    modified_params = permitted_params.merge(update_params: update_params)
+    result = StudentService::Serve.run(modified_params, :update)
+    handle_response(result, :ok)
   rescue StandardError => e
     handle_response({ msg: e.message }, 500)
   end
 
   def destroy
-    @student.destroy
+    StudentService::Serve.run(permitted_params, :delete)
     handle_response({ msg: 'Deleted Successfully' }, :ok)
   rescue StandardError => e
     handle_response({ msg: e.message }, 500)
@@ -45,11 +44,5 @@ class StudentsController < ApplicationController
 
   def update_params
     params.permit(:name)
-  end
-
-  def set_student
-    @student = Student.find(permitted_params[:id])
-  rescue ActiveRecord::RecordNotFound => e
-    handle_response({ msg: e.message }, 500)
   end
 end

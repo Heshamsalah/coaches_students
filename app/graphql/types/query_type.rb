@@ -1,13 +1,19 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field :students,
+          function: Queries::Student::Index.new,
+          description: 'Return list of students'
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
-    end
+    field :student,
+          function: Queries::Student::Show.new,
+          description: 'Find student by id'
+
+    field :coaches,
+          function: Queries::Coach::Index.new,
+          description: 'Return list of coaches'
+
+    field :coach,
+          function: Queries::Coach::Show.new,
+          description: 'Find coach by id'
   end
 end
