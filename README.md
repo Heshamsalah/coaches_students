@@ -3,8 +3,8 @@
 * rails version: **Rails 5.2.2**
 * ruby version: **ruby 2.5.1p57**
 
-The App provides both RESTful API and GraphQL. 
-This is an API only app, but you can find the front end app in **[here](https://github.com/Heshamsalah/coaches_and_students_web_app)** (*still under construction*).
+* The App provides both RESTful API and GraphQL. 
+* This is an API only app, but you can find the front end app in **[here](https://github.com/Heshamsalah/coaches_and_students_web_app)** (*still under construction*).
 
 ## Instructions
 
