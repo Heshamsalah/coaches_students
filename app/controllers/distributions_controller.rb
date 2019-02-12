@@ -1,18 +1,18 @@
-class DistributionController < ApplicationController
+class DistributionsController < ApplicationController
   before_action :set_lists
 
   def problem_one
-    result = StudentDistributionHandler::ProblemOne.call(@students, @coaches)
+    result = StudentDistributionService::ProblemOne.call(@students, @coaches)
     handle_response(result, :ok)
   end
 
   def problem_two
-    result = StudentDistributionHandler::ProblemTwo.call(@students, @coaches)
+    result = StudentDistributionService::ProblemTwo.call(@students, @coaches)
     handle_response(result, :ok)
   end
 
   def problem_three
-    result = StudentDistributionHandler::ProblemThree.call(@students, @coaches)
+    result = StudentDistributionService::ProblemThree.call(@students, @coaches)
     handle_response(result, :ok)
   end
 
@@ -26,7 +26,7 @@ class DistributionController < ApplicationController
   end
 
   def set_lists
-    @students = Student.where(id: permitted_params[:students_ids])
-    @coaches = Coach.where(id: permitted_params[:coaches_ids])
+    @students = Student.where(id: permitted_params[:students_ids]).to_a
+    @coaches = Coach.where(id: permitted_params[:coaches_ids]).to_a
   end
 end

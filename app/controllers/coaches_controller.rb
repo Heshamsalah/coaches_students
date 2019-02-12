@@ -2,7 +2,8 @@ class CoachesController < ApplicationController
   before_action :set_coach, only: %i(show update destroy)
 
   def index
-    result = Coach.page(permitted_params[:page].to_i).per(permitted_params[:per_page].to_i)
+    result = Coach.page(permitted_params[:page].to_i).
+             per(permitted_params[:per_page].to_i)
     handle_response(result, :ok)
   end
 

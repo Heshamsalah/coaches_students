@@ -5,7 +5,6 @@ FactoryBot.define do
   end
 
   factory :coach_with_students, parent: :coach do
-
     transient do
       students_count { 5 }
       capacity { 0 }

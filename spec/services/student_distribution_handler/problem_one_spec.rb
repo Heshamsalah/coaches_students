@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe StudentDistributionHandler::ProblemOne, type: :service do
+RSpec.describe StudentDistributionService::ProblemOne, type: :service do
   context 'Successfull Scenarios' do
     it 'Case 1' do
       students = FactoryBot.create_list(:student, 20)
       coaches = FactoryBot.create_list(:coach, 3)
 
-      result = StudentDistributionHandler::ProblemOne.call(students, coaches)
+      result = StudentDistributionService::ProblemOne.call(students, coaches)
 
       expect(result).to eq([7, 7, 6])
     end
@@ -15,7 +15,7 @@ RSpec.describe StudentDistributionHandler::ProblemOne, type: :service do
       students = FactoryBot.create_list(:student, 21)
       coaches = FactoryBot.create_list(:coach, 3)
 
-      result = StudentDistributionHandler::ProblemOne.call(students, coaches)
+      result = StudentDistributionService::ProblemOne.call(students, coaches)
 
       expect(result).to eq([7, 7, 7])
     end
@@ -24,7 +24,7 @@ RSpec.describe StudentDistributionHandler::ProblemOne, type: :service do
       students = FactoryBot.create_list(:student, 20)
       coaches = FactoryBot.create_list(:coach, 4)
 
-      result = StudentDistributionHandler::ProblemOne.call(students, coaches)
+      result = StudentDistributionService::ProblemOne.call(students, coaches)
 
       expect(result).to eq([5, 5, 5, 5])
     end
@@ -33,7 +33,7 @@ RSpec.describe StudentDistributionHandler::ProblemOne, type: :service do
       students = []
       coaches = FactoryBot.create_list(:coach, 4)
 
-      expect { StudentDistributionHandler::ProblemOne.call(students, coaches) }.
+      expect { StudentDistributionService::ProblemOne.call(students, coaches) }.
         to raise_exception('Neither Students List nor Coaches List can\'t be empty')
     end
 
@@ -41,7 +41,7 @@ RSpec.describe StudentDistributionHandler::ProblemOne, type: :service do
       students = FactoryBot.create_list(:student, 20)
       coaches = FactoryBot.create_list(:coach, 1)
 
-      result = StudentDistributionHandler::ProblemOne.call(students, coaches)
+      result = StudentDistributionService::ProblemOne.call(students, coaches)
 
       expect(result).to eq([20])
     end

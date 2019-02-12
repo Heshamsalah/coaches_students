@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StudentDistributionHandler::ProblemTwo, type: :service do
+RSpec.describe StudentDistributionService::ProblemTwo, type: :service do
   context 'Successfull Scenarios' do
     it 'Case 1' do
       students = FactoryBot.create_list(:student, 10)
@@ -10,7 +10,7 @@ RSpec.describe StudentDistributionHandler::ProblemTwo, type: :service do
       end
       coaches << FactoryBot.create(:coach_with_students, students_count: 6)
 
-      result = StudentDistributionHandler::ProblemTwo.call(students, coaches)
+      result = StudentDistributionService::ProblemTwo.call(students, coaches)
 
       expect(result).to eq([10, 10, 10])
     end
@@ -22,20 +22,19 @@ RSpec.describe StudentDistributionHandler::ProblemTwo, type: :service do
       coaches << FactoryBot.create(:coach_with_students, students_count: 2)
       coaches << FactoryBot.create(:coach_with_students, students_count: 7)
 
-      result = StudentDistributionHandler::ProblemTwo.call(students, coaches)
+      result = StudentDistributionService::ProblemTwo.call(students, coaches)
 
       expect(result).to eq([12, 12, 12])
     end
 
-    it 'Case 4' do
+    it 'Case 3' do
       students = []
       coaches = []
       coaches << FactoryBot.create(:coach_with_students, students_count: 2)
       coaches << FactoryBot.create(:coach_with_students, students_count: 2)
       coaches << FactoryBot.create(:coach_with_students, students_count: 7)
 
-
-      expect { StudentDistributionHandler::ProblemOne.call(students, coaches) }.
+      expect { StudentDistributionService::ProblemOne.call(students, coaches) }.
         to raise_exception('Neither Students List nor Coaches List can\'t be empty')
     end
   end

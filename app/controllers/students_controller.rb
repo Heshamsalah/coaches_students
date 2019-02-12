@@ -2,7 +2,8 @@ class StudentsController < ApplicationController
   before_action :set_student, only: %i(show update destroy)
 
   def index
-    result = Student.page(permitted_params[:page].to_i).per(permitted_params[:per_page].to_i)
+    result = Student.page(permitted_params[:page].to_i).
+             per(permitted_params[:per_page].to_i)
     handle_response(result, :ok)
   end
 
