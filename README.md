@@ -6,6 +6,10 @@
 * The App provides both RESTful API and GraphQL. 
 * This is an API only app, but you can find the front end app in **[here](https://github.com/Heshamsalah/coaches_and_students_web_app)** (*still under construction*).
 
+
+* The app uses GraphiQL lib to interact with the backend through a GUI. [`gem 'graphiql-rails'`](https://github.com/rmosolgo/graphiql-rails)
+* You can run it using: `http://localhost:3000/graphiql`
+
 ## Instructions
 
 - clone the repo `https://github.com/Heshamsalah/coaches_students.git`
